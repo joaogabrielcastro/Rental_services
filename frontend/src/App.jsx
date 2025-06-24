@@ -81,10 +81,10 @@ function App() {
 }
 
 function Root() {
-  const { user } = useAuth();
+  const { role } = useAuth();
   return (
     <div className="flex">
-      <Sidebar usuarioLogado={user} />
+      <Sidebar usuarioLogado={role} />
       <div className="ml-[80px] w-full">
         <Outlet />
       </div>
@@ -93,8 +93,8 @@ function Root() {
 }
 
 function PrivateAdminRoute() {
-  const { user } = useAuth();
-  if (user?.tipo === "admin" || user?.showAdminFeatures) {
+  const { role } = useAuth();
+  if (role === "admin") {
     return <Admin />;
   }
   return <Navigate to="/login" replace />;

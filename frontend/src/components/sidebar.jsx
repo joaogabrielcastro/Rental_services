@@ -3,13 +3,14 @@ import { IoPersonOutline } from "react-icons/io5";
 import { CiShoppingCart, CiHome } from "react-icons/ci";
 import { GrUserAdmin } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const Sidebar = ({ usuarioLogado }) => {
+const Sidebar = () => {
   const menuItems = [
     { to: "/login", icon: <IoPersonOutline size={24} />, label: "Login" },
     { to: "/", icon: <CiHome size={24} />, label: "Home" },
     { to: "/cart", icon: <CiShoppingCart size={24} />, label: "Carrinho" },
-    ...(usuarioLogado?.tipo === "admin"
+    ...(useAuth().role === "admin"
       ? [{ to: "/admin", icon: <GrUserAdmin size={24} />, label: "Admin" }]
       : []),
   ];

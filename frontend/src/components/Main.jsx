@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import API from "../Services";
+import API from "../API";
 
 const ProdutoCard = ({ produto, adicionarAoCarrinho }) => (
   <div className="bg-white border rounded-lg shadow-lg overflow-hidden">
