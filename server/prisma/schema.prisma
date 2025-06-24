@@ -1,0 +1,57 @@
+// prettier-ignore
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum UserRoles {
+    admin
+    user
+}
+
+enum RentalStatus {
+    active
+    finished
+    canceled
+}
+
+model User {
+    id       String    @id
+    name     String
+    email    String    @unique
+    password String
+    role     UserRoles
+    rentals  Rental[]
+
+    @@map("users")
+}
+
+model Equipment {
+    id           String   @id
+    name         String
+    image        String
+    stock        Int
+    description  String   @db.VarChar(255)
+    is_available Boolean
+    rentals      Rental[]
+
+    @@map("equipments")
+}
+
+model Rental {
+    id          String       @id
+    status      RentalStatus
+    amount      Int
+    start_date  DateTime
+    return_date DateTime
+    User        User         @relation(fields: [userId], references: [id])
+    userId      String
+    Equipment   Equipment    @relation(fields: [equipmentId], references: [id])
+    equipmentId String
+
+    @@map("rentals")
+}
