@@ -2,28 +2,36 @@ import React, { useState, useEffect } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import API from "../API";
+import { toast } from "react-toastify";
 
-const ProdutoCard = ({ produto, adicionarAoCarrinho }) => (
-  <div className="bg-white border rounded-lg shadow-lg overflow-hidden">
-    <img
-      src={produto.imagem}
-      alt={produto.nome}
-      className="w-full h-48 object-cover"
-    />
-    <div className="p-4 bg-gray-00">
-      <h2 className="text-lg font-bold text-black">{produto.name}</h2>
-      <div className="flex justify-between items-center mt-3">
-        <span className="font-bold text-orange-500">
-          Diária: R$ {produto.price},00
-        </span>
-        <span className="text-gray-600">{produto.description}</span>
-        <button onClick={() => adicionarAoCarrinho(produto)}>
-          <CiShoppingCart className="text-black" size={22} />
-        </button>
+const ProdutoCard = ({ produto, adicionarAoCarrinho }) => {
+  const handleAdicionar = () => {
+    adicionarAoCarrinho(produto);
+    toast.success("Item alocado com sucesso!");
+  };
+
+  return (
+    <div className="bg-white border rounded-lg shadow-lg overflow-hidden">
+      <img
+        src={produto.image}
+        alt={produto.name}
+        className="w-full h-48 object-cover"
+      />
+      <div className="p-4 bg-gray-00">
+        <h2 className="text-lg font-bold text-black">{produto.name}</h2>
+        <div className="flex justify-between items-center mt-3">
+          <span className="font-bold text-orange-500">
+            Diária: R$ {produto.price},00
+          </span>
+          <span className="text-gray-600">{produto.description}</span>
+          <button onClick={handleAdicionar}>
+            <CiShoppingCart className="text-black" size={22} />
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Main = ({ adicionarAoCarrinho }) => {
   const [produtos, setProdutos] = useState([]);
@@ -53,13 +61,13 @@ const Main = ({ adicionarAoCarrinho }) => {
 
     if (categoria) {
       resultados = resultados.filter((produto) =>
-        produto.nome.toLowerCase().includes(categoria.toLowerCase())
+        produto.name.toLowerCase().includes(categoria.toLowerCase())
       );
     }
 
     if (busca) {
       resultados = resultados.filter((produto) =>
-        produto.nome.toLowerCase().includes(busca.toLowerCase())
+        produto.name.toLowerCase().includes(busca.toLowerCase())
       );
     }
 

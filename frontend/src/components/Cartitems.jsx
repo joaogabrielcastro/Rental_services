@@ -87,7 +87,7 @@ const CartItems = ({ itensCarrinho, atualizarQuantidade, removerDoCarrinho }) =>
               <tr key={item.id} className="border-t hover:bg-gray-100">
                 <td className="p-3 flex items-center gap-3">
                   <img
-                    src={item.imagem}
+                    src={item.image}
                     alt={`Imagem de ${item.nome}`}
                     className="w-[100px] h-16 object-cover rounded"
                   />

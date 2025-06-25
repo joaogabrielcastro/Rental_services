@@ -15,6 +15,9 @@ const Sidebar = () => {
     ...(useAuth().role === "admin"
       ? [{ to: "/admin", icon: <GrUserAdmin size={24} />, label: "Admin" }]
       : []),
+       ...(useAuth().role === "admin or user"
+      ? [{ to: "/History", icon: <CiDeliveryTruck size={24} />, label: "History" }]
+      : []),
   ];
 
   return (

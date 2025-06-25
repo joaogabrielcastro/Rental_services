@@ -3,7 +3,7 @@ import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Login } from "./pages/Login";
 import { Admin } from "./pages/Admin";
-import { History } from "./pages/History.jsx";  
+import History from "./pages/History";
 import Sidebar from "./components/sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

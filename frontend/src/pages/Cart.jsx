@@ -1,4 +1,4 @@
-import CartItems from "../components/CartItems";
+import CartItems from "../components/Cartitems.jsx";
 
 function Cart({ itensCarrinho, atualizarQuantidade, removerDoCarrinho }) {
   return (

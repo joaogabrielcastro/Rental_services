@@ -4,12 +4,11 @@ import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 import { EquipmentList } from "../components/Admin/EquipmentList";
 import { EquipmentForm } from "../components/Admin/EquipmentForm";
-import { RentalList } from "../components/Admin/RentalList";
+
 
 const Admin = () => {
   const { role, isAuthenticated, loading, token: authToken } = useAuth();
 
-  const [rentals, setRentals] = useState([]);
   const [equipments, setEquipments] = useState([]);
   const [equipmentForm, setEquipmentForm] = useState({
     name: "",
@@ -48,7 +47,7 @@ const Admin = () => {
           "http://localhost:3333/rentals/all",
           authHeaders
         );
-        setRentals(res.data);
+        (res.data);
       } catch (err) {
         console.error("Erro ao buscar aluguéis:", err);
       }
@@ -80,7 +79,7 @@ const Admin = () => {
         "http://localhost:3333/rentals/all",
         authHeaders
       );
-      setRentals(res.data);
+      (res.data);
     } catch (err) {
       console.error("Erro ao buscar aluguéis:", err);
     }
@@ -137,19 +136,6 @@ const Admin = () => {
     }
   };
 
-  const handleCancelRental = async (rentalId) => {
-    if (!window.confirm("Confirma o cancelamento do aluguel?")) return;
-    try {
-      await axios.delete(
-        `http://localhost:3333/rentals/cancel/${rentalId}`,
-        authHeaders
-      );
-      fetchRentals();
-    } catch (err) {
-      console.error("Erro ao cancelar aluguel:", err);
-    }
-  };
-
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Painel do Administrador</h1>
@@ -164,9 +150,8 @@ const Admin = () => {
         equipmentForm={equipmentForm}
         setEquipmentForm={setEquipmentForm}
         onSubmit={handleSubmit}
-      />
+      />  
 
-      <RentalList rentals={rentals} onCancel={handleCancelRental} />
     </div>
   );
 };
