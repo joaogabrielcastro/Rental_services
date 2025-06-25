@@ -26,9 +26,12 @@ const CartItems = ({ itensCarrinho, atualizarQuantidade, removerDoCarrinho }) =>
     const item = itensCarrinho.find((item) => item.id === id);
     const dataItem = datas[id];
 
+
     if (!dataItem?.inicio || !dataItem?.fim) {
       toast.error("Preencha a data inicial e final!");
       return;
+
+      
     }
 
     const payload = {

@@ -15,7 +15,9 @@ app.setValidatorCompiler(Provider.validatorCompiler);
 app.setSerializerCompiler(Provider.serializerCompiler);
 
 app.register(fastifyCors, {
-    origin: "*",
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Authorization", "Content-Type"],
 });
 
 app.register(fastifyJwt, {

@@ -3,7 +3,6 @@ import { useAuth } from "../contexts/AuthContext";
 import API from "../API";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
   const { login, role } = useAuth();
   const navigate = useNavigate();
@@ -14,21 +13,20 @@ const Login = () => {
   const [name, setNome] = useState("");
   console.log("Role do usuário:", role);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  const email = e.target.email.value;
-  const password = e.target.password.value;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-  const result = await login({ email, password });
+    const result = await login({ email, password });
 
-  if (!result) {
-    alert("Login failed");
-    return;
-  }
+    if (!result) {
+      alert("Login failed");
+      return;
+    }
 
-  navigate("/");
-};
-
+    navigate("/");
+  };
 
   const handleCadastro = async (e) => {
     console.log("Cadastrando usuário:", name, email, senha);
@@ -51,7 +49,6 @@ const Login = () => {
     } catch {
       setMensagem("Erro ao cadastrar. Tente outro e-mail.");
     }
-
   };
 
   return (
