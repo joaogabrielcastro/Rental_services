@@ -1,25 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const CartItems = ({
-  itensCarrinho,
-  atualizarQuantidade,
-  removerDoCarrinho,
-}) => {
+const CartItems = ({ itensCarrinho, atualizarQuantidade, removerDoCarrinho }) => {
+  const [datas, setDatas] = useState({}); // Armazena datas por item
+
   const handleChangeQuantidade = (id, novaQuantidade) => {
     atualizarQuantidade(id, novaQuantidade < 1 ? 1 : novaQuantidade);
+  };
+
+  const handleChangeData = (id, campo, valor) => {
+    setDatas((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        [campo]: valor,
+      },
+    }));
   };
 
   const handleExcluir = (id) => {
     removerDoCarrinho(id);
   };
 
-  const handleAlocar = (id) => {
+  const handleAlocar = async (id) => {
     const item = itensCarrinho.find((item) => item.id === id);
-    if (item) {
+    const dataItem = datas[id];
+
+    if (!dataItem?.inicio || !dataItem?.fim) {
+      toast.error("Preencha a data inicial e final!");
+      return;
+    }
+
+    const payload = {
+      produtoId: item.id,
+      nome: item.nome,
+      quantidade: item.quantidade,
+      dataInicio: dataItem.inicio,
+      dataFim: dataItem.fim,
+      userId: "user_123", // <- Substitua pelo id real do usuário logado
+    };
+
+    try {
+      await fetch("/api/alocar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
       toast.success(`Item ${item.nome} alocado com sucesso!`);
-    } else {
-      toast.error("Item não encontrado!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao alocar item.");
     }
   };
 
@@ -77,12 +108,20 @@ const CartItems = ({
                 <td className="p-3">
                   <input
                     type="date"
+                    value={datas[item.id]?.inicio || ""}
+                    onChange={(e) =>
+                      handleChangeData(item.id, "inicio", e.target.value)
+                    }
                     className="border border-gray-300 rounded px-2 py-1 text-black"
                   />
                 </td>
                 <td className="p-3">
                   <input
                     type="date"
+                    value={datas[item.id]?.fim || ""}
+                    onChange={(e) =>
+                      handleChangeData(item.id, "fim", e.target.value)
+                    }
                     className="border border-gray-300 rounded px-2 py-1 text-black"
                   />
                 </td>
