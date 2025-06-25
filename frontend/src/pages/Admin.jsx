@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom";
 import { EquipmentList } from "../components/Admin/EquipmentList";
 import { EquipmentForm } from "../components/Admin/EquipmentForm";
 
-
 const Admin = () => {
   const { role, isAuthenticated, loading, token: authToken } = useAuth();
 
@@ -32,7 +31,7 @@ const Admin = () => {
     const fetchEquipments = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/equipments/all",
+          "http://localhost:3000/equipments/all",
           authHeaders
         );
         setEquipments(res.data);
@@ -44,10 +43,10 @@ const Admin = () => {
     const fetchRentals = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3333/rentals/all",
+          "http://localhost:3000/rentals/all",
           authHeaders
         );
-        (res.data);
+        res.data;
       } catch (err) {
         console.error("Erro ao buscar aluguéis:", err);
       }
@@ -64,7 +63,7 @@ const Admin = () => {
   async function fetchEquipments() {
     try {
       const res = await axios.get(
-        "http://localhost:3333/equipments/all",
+        "http://localhost:3000/equipments/all",
         authHeaders
       );
       setEquipments(res.data);
@@ -76,10 +75,10 @@ const Admin = () => {
   const fetchRentals = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3333/rentals/all",
+        "http://localhost:3000/rentals/all",
         authHeaders
       );
-      (res.data);
+      res.data;
     } catch (err) {
       console.error("Erro ao buscar aluguéis:", err);
     }
@@ -89,7 +88,7 @@ const Admin = () => {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:3333/equipments/create",
+        "http://localhost:3000/equipments/create",
         equipmentForm,
         {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -114,7 +113,7 @@ const Admin = () => {
   const handleDeleteEquipment = async (id) => {
     if (!window.confirm("Confirma a exclusão do equipamento?")) return;
     try {
-      await axios.delete(`http://localhost:3333/equipments/delete/${id}`, {
+      await axios.delete(`http://localhost:3000/equipments/delete/${id}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       fetchEquipments();
@@ -126,7 +125,7 @@ const Admin = () => {
   const handleRentEquipment = async (equipmentId) => {
     try {
       await axios.post(
-        "http://localhost:3333/rentals/rent",
+        "http://localhost:3000/rentals/rent",
         { equipmentId },
         authHeaders
       );
@@ -150,8 +149,7 @@ const Admin = () => {
         equipmentForm={equipmentForm}
         setEquipmentForm={setEquipmentForm}
         onSubmit={handleSubmit}
-      />  
-
+      />
     </div>
   );
 };
