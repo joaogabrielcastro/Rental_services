@@ -6,6 +6,7 @@ import { Admin } from "./pages/Admin";
 import Sidebar from "./components/sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Allocation } from "./pages/Allocation.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,

@@ -3,6 +3,8 @@ import { CiShoppingCart } from "react-icons/ci";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import API from "../API";
 
+
+
 const ProdutoCard = ({ produto, adicionarAoCarrinho }) => (
   <div className="bg-white border rounded-lg shadow-lg overflow-hidden">
     <img
@@ -12,7 +14,6 @@ const ProdutoCard = ({ produto, adicionarAoCarrinho }) => (
     />
     <div className="p-4 bg-gray-00">
       <h2 className="text-lg font-bold text-black">{produto.name}</h2>
-      <p className="text-sm text-gray-600">{produto.descricao}</p>
       <div className="flex justify-between items-center mt-3">
         <span className="font-bold text-orange-500">
           Diária: R$ {produto.diaria},00

@@ -48,7 +48,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-black">
+    <div className="flex items-center justify-center h-screen">
       <form
         onSubmit={aba === "login" ? handleSubmit : handleCadastro}
         className="bg-[#1a1a1a] p-8 rounded-lg shadow-lg w-96"
@@ -63,7 +63,7 @@ const Login = () => {
                 : "bg-gray-800 text-orange-400"
             }`}
           >
-            Entrar
+            Login
           </button>
           <button
             type="button"
