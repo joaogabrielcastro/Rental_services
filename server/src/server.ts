@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import * as Provider from "fastify-type-provider-zod";
 import { fastify } from "fastify";
 import { fastifyJwt } from "@fastify/jwt";
@@ -17,10 +19,10 @@ app.register(fastifyCors, {
 });
 
 app.register(fastifyJwt, {
-    secret: "supersecretkey",
+    secret: process.env.JWT_SECRET!, // Agora está carregada corretamente
 });
 
-// register swagger
+// Swagger config
 app.register(fastifySwagger, {
     openapi: {
         info: {

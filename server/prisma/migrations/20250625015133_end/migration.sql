@@ -21,6 +21,7 @@ CREATE TABLE "equipments" (
     "name" TEXT NOT NULL,
     "image" TEXT NOT NULL,
     "stock" INTEGER NOT NULL,
+    "price" DECIMAL(10,2) NOT NULL,
     "description" VARCHAR(255) NOT NULL,
     "is_available" BOOLEAN NOT NULL,
 

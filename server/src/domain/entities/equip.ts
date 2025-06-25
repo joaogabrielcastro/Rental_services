@@ -1,11 +1,13 @@
 import { ulid } from "ulid";
 import { InvalidAmountError } from "../errors/amount-error";
+import { InvalidPriceError } from "../errors/price-error";
 
 interface IEquipment {
     id?: string;
     name: string;
     image: string;
     stock: number;
+    price: number;
     description: string;
 }
 
@@ -15,6 +17,7 @@ export class Equipment {
     image: string;
     description: string;
     private _stock!: number;
+    private _price!: number;
     private _isAvailable!: boolean;
 
     constructor(props: IEquipment) {
@@ -22,6 +25,7 @@ export class Equipment {
         this.name = props.name;
         this.image = props.image;
         this.stock = props.stock;
+        this.price = props.price;
         this.description = props.description;
     }
 
@@ -29,10 +33,24 @@ export class Equipment {
         return this._isAvailable;
     }
 
+    // price
+    get price() {
+        return this._price;
+    }
+
+    set price(price: number) {
+        if (price < 0) {
+            throw new InvalidPriceError("Price must be greater than zero.");
+        }
+
+        this._price = Number(price.toFixed(2));
+    }
+
     get stock() {
         return this._stock;
     }
 
+    // stock
     set stock(amount: number) {
         if (amount < 0) {
             throw new InvalidAmountError(

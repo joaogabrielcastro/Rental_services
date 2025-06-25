@@ -3,6 +3,7 @@ export interface EquipmentRequestDTO {
     name: string;
     image: string;
     stock: number;
+    price: number;
     description: string;
 }
 
@@ -12,6 +13,7 @@ export interface EquipmentResponseDTO {
     name: string;
     image: string;
     stock: number;
+    price: number;
     description: string;
     isAvailable: boolean;
 }
@@ -21,4 +23,5 @@ export interface EquipmentListResponseDTO {
     id: string;
     name: string;
     image: string;
+    price: number;
 }

@@ -25,7 +25,7 @@ const CartItems = ({
 
   const calcularTotalGeral = () =>
     itensCarrinho.reduce(
-      (total, item) => total + item.diaria * item.quantidade,
+      (total, item) => total + item.price * item.quantidade,
       0
     );
 
@@ -43,7 +43,8 @@ const CartItems = ({
               <th className="p-3 text-left">Produto</th>
               <th className="p-3 text-left">Preço</th>
               <th className="p-3 text-left">Diária</th>
-              <th className="p-3 text-left">Total</th>
+              <th className="p-3 text-left">Data Inicial</th>
+              <th className="p-3 text-left">Data Final</th>
               <th className="p-3 text-left">Ação</th>
             </tr>
           </thead>
@@ -58,10 +59,10 @@ const CartItems = ({
                   />
                   <div>
                     <h2 className="font-semibold text-black">{item.nome}</h2>
-                    <p className="text-sm text-gray-600">{item.descricao}</p>
+                    <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
                 </td>
-                <td className="p-3 text-black">R${item.diaria},00</td>
+                <td className="p-3 text-black">R${item.price},00</td>
                 <td className="p-3">
                   <input
                     type="number"
@@ -73,8 +74,17 @@ const CartItems = ({
                     className="w-16 border border-gray-300 rounded px-2 py-1 text-black"
                   />
                 </td>
-                <td className="p-3 text-black">
-                  R${item.diaria * item.quantidade},00
+                <td className="p-3">
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded px-2 py-1 text-black"
+                  />
+                </td>
+                <td className="p-3">
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded px-2 py-1 text-black"
+                  />
                 </td>
                 <td className="p-3">
                   <span className="mr-4">

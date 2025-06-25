@@ -16,16 +16,18 @@ export class EquipmentMapper {
             name: equipment.name,
             image: equipment.image,
             stock: equipment.stock,
+            price: equipment.price,
             description: equipment.description,
             isAvailable: equipment.isAvailable,
         };
     }
 
     static toList(equipments: Equipment[]): EquipmentListResponseDTO[] {
-        return equipments.map(({ id, name, image }) => ({
+        return equipments.map(({ id, name, image, price }) => ({
             id,
             name,
             image,
+            price,
         }));
     }
 }

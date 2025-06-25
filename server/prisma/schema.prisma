@@ -35,6 +35,7 @@ model Equipment {
     name         String
     image        String
     stock        Int
+    price        Decimal  @db.Decimal(10, 2)
     description  String   @db.VarChar(255)
     is_available Boolean
     rentals      Rental[]
