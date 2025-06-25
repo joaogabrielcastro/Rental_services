@@ -4,12 +4,14 @@ import { CiShoppingCart, CiHome } from "react-icons/ci";
 import { GrUserAdmin } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 const Sidebar = () => {
   const menuItems = [
     { to: "/login", icon: <IoPersonOutline size={24} />, label: "Login" },
     { to: "/", icon: <CiHome size={24} />, label: "Home" },
     { to: "/cart", icon: <CiShoppingCart size={24} />, label: "Carrinho" },
+    { to: "/History", icon: <CiDeliveryTruck size={24} />, label: "History" },
     ...(useAuth().role === "admin"
       ? [{ to: "/admin", icon: <GrUserAdmin size={24} />, label: "Admin" }]
       : []),

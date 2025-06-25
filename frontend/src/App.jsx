@@ -3,10 +3,11 @@ import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Login } from "./pages/Login";
 import { Admin } from "./pages/Admin";
+import { History } from "./pages/History.jsx";  
 import Sidebar from "./components/sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Allocation } from "./pages/Allocation.jsx";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -69,6 +70,7 @@ function App() {
         />
         <Route path="login" element={<Login />} />
         <Route path="admin" element={<PrivateAdminRoute />} />
+        <Route path="history" element={<History />} />
       </Route>
     )
   );
